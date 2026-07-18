@@ -1,0 +1,29 @@
+{
+  "claim_type": "risk",
+  "signal": "com.fidacy.trust_verdict",
+  "envelope": "compact JWS, EdDSA (Ed25519) over RFC 8785 (JCS) bytes, kid in protected header, typ application/vc+jws",
+  "test_jwks": "test-jwks.json",
+  "verify": "npm @fidacy/verify -> verifyRiskPayload(jws, { jwks })",
+  "vectors": {
+    "valid": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6ImlqMFhvRHZwa1V5S3NKSGpsc2YyVmItWS1aZEhpcXVITDN5MTh5Qkxqb3ciLCJ0eXAiOiJhcHBsaWNhdGlvbi92Yytqd3MifQ.eyJhc3Nlc3NlZF9hdCI6IjIwMjYtMDctMThUMTI6MDA6MDAuMDAwWiIsImRlY2lzaW9uIjoiZGVueSIsImlzc3VlciI6ImRpZDp3ZWI6ZmlkYWN5LmNvbSNpajBYb0R2cGtVeUtzSkhqbHNmMlZiLVktWmRIaXF1SEwzeTE4eUJMam93IiwibW9kZWxfdmVyc2lvbiI6ImZpZGFjeS1yaXNrLTAuMS4wIiwicG9saWN5X3ZlcnNpb24iOiJub25lIiwic2NvcmUiOjUwLCJzaWduYWxzIjp7InJ1bGUiOiJwYXllZV9ub3RfaW5fYWxsb3dsaXN0In0sInN1YmplY3QiOiJhZ2VudDpkZW1vLW5vcnRod2luZCJ9.Dzr9SbSIkCO2yhRhPNeC0NWH_avSTjs9nClgiAdw4KN0xg9Fq1Er7EFstBFcPYfmYTVOKQNX05XvwSRG5aKFAw",
+      "expect": "valid"
+    },
+    "expired": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6ImlqMFhvRHZwa1V5S3NKSGpsc2YyVmItWS1aZEhpcXVITDN5MTh5Qkxqb3ciLCJ0eXAiOiJhcHBsaWNhdGlvbi92Yytqd3MifQ.eyJhc3Nlc3NlZF9hdCI6IjIwMjYtMDctMThUMTI6MDA6MDAuMDAwWiIsImRlY2lzaW9uIjoiZGVueSIsImV4cCI6MTAwMDAwMDAwMCwiaXNzdWVyIjoiZGlkOndlYjpmaWRhY3kuY29tI2lqMFhvRHZwa1V5S3NKSGpsc2YyVmItWS1aZEhpcXVITDN5MTh5Qkxqb3ciLCJtb2RlbF92ZXJzaW9uIjoiZmlkYWN5LXJpc2stMC4xLjAiLCJwb2xpY3lfdmVyc2lvbiI6Im5vbmUiLCJzY29yZSI6NTAsInNpZ25hbHMiOnsicnVsZSI6InBheWVlX25vdF9pbl9hbGxvd2xpc3QifSwic3ViamVjdCI6ImFnZW50OmRlbW8tbm9ydGh3aW5kIn0.gfKUV8e6MOK9_EBHbKMHK4De_3bgaDI1tkJmQWiAk5nrQHjEnv7EEZL9gY3qbwWYF-fqF-YUOTaJO8DXn_uyCA",
+      "expect": "expired"
+    },
+    "bad-signature": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6ImlqMFhvRHZwa1V5S3NKSGpsc2YyVmItWS1aZEhpcXVITDN5MTh5Qkxqb3ciLCJ0eXAiOiJhcHBsaWNhdGlvbi92Yytqd3MifQ.eyJhc3Nlc3NlZF9hdCI6IjIwMjYtMDctMThUMTI6MDA6MDAuMDAwWiIsImRlY2lzaW9uIjoiZGVueSIsImlzc3VlciI6ImRpZDp3ZWI6ZmlkYWN5LmNvbSNpajBYb0R2cGtVeUtzSkhqbHNmMlZiLVktWmRIaXF1SEwzeTE4eUJMam93IiwibW9kZWxfdmVyc2lvbiI6ImZpZGFjeS1yaXNrLTAuMS4wIiwicG9saWN5X3ZlcnNpb24iOiJub25lIiwic2NvcmUiOjUwLCJzaWduYWxzIjp7InJ1bGUiOiJwYXllZV9ub3RfaW5fYWxsb3dsaXN0In0sInN1YmplY3QiOiJhZ2VudDpkZW1vLW5vcnRod2luZCJ9.Dzr9SbSIkCO2yhRhPNeC0NWH_avSTjs9nClgiAdw4KN0xg9Fq1Er7EFstBFcPYfmYTVOKQNX05XvwSRG5aKFAA",
+      "expect": "invalid_signature"
+    },
+    "rotated-key": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6InZYMEZjdGZvRlA5enBYcV9tUEUzZTY0eW5YUTJJYVlIVW5ZTVBnLVFZbmciLCJ0eXAiOiJhcHBsaWNhdGlvbi92Yytqd3MifQ.eyJhc3Nlc3NlZF9hdCI6IjIwMjYtMDctMThUMTI6MDA6MDAuMDAwWiIsImRlY2lzaW9uIjoiZGVueSIsImlzc3VlciI6ImRpZDp3ZWI6ZmlkYWN5LmNvbSN2WDBGY3Rmb0ZQOXpwWHFfbVBFM2U2NHluWFEySWFZSFVuWU1QZy1RWW5nIiwibW9kZWxfdmVyc2lvbiI6ImZpZGFjeS1yaXNrLTAuMS4wIiwicG9saWN5X3ZlcnNpb24iOiJub25lIiwic2NvcmUiOjUwLCJzaWduYWxzIjp7InJ1bGUiOiJwYXllZV9ub3RfaW5fYWxsb3dsaXN0In0sInN1YmplY3QiOiJhZ2VudDpkZW1vLW5vcnRod2luZCJ9.Ls5GQ-fxf_wKuSHB8uNP_mBBxCVc0WD1IwZBCFz1SCwaeLtNqeyyfAzV2FDMrwX-ima5KXAywx_bRHOA2uXpCA",
+      "expect": "unknown_kid"
+    },
+    "wrong-session": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6ImlqMFhvRHZwa1V5S3NKSGpsc2YyVmItWS1aZEhpcXVITDN5MTh5Qkxqb3ciLCJ0eXAiOiJhcHBsaWNhdGlvbi92Yytqd3MifQ.eyJhc3Nlc3NlZF9hdCI6IjIwMjYtMDctMThUMTI6MDA6MDAuMDAwWiIsImRlY2lzaW9uIjoiZGVueSIsImlzc3VlciI6ImRpZDp3ZWI6ZmlkYWN5LmNvbSNpajBYb0R2cGtVeUtzSkhqbHNmMlZiLVktWmRIaXF1SEwzeTE4eUJMam93IiwibW9kZWxfdmVyc2lvbiI6ImZpZGFjeS1yaXNrLTAuMS4wIiwicG9saWN5X3ZlcnNpb24iOiJub25lIiwic2NvcmUiOjUwLCJzaWduYWxzIjp7InJ1bGUiOiJwYXllZV9ub3RfaW5fYWxsb3dsaXN0In0sInN1YmplY3QiOiJzZXNzaW9uOmNzX09USEVSIn0._q_FGnogFCDhwV_aLgcyzxXiw32wDQhi623cxJVSB1L3fIfg6fxWNGxdq_y4yO63Ad8mgMayktCttUKNfH3lAg",
+      "expect": "signature valid; consumer rejects on session mismatch"
+    }
+  }
+}

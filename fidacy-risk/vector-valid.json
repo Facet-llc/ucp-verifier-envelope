@@ -1,0 +1,52 @@
+{
+  "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6IjF6b001N2JyamxsdWZOVHpDd0k1LWo1akZraUFzbHl6VkRiUEFjUl9mLU0iLCJ0eXAiOiJhcHBsaWNhdGlvbi92Yytqd3MifQ.eyJhc3Nlc3NlZF9hdCI6IjIwMjYtMDctMTdUMjA6MzM6NDEuMDcyWiIsImRlY2lzaW9uIjoiZGVueSIsImlzc3VlciI6ImRpZDp3ZWI6ZmlkYWN5LmNvbSMxem9NNTdicmpsbHVmTlR6Q3dJNS1qNWpGa2lBc2x5elZEYlBBY1JfZi1NIiwibW9kZWxfdmVyc2lvbiI6ImZpZGFjeS1yaXNrLTAuMS4wIiwicG9saWN5X3ZlcnNpb24iOiIxIiwic2NvcmUiOjYyLCJzaWduYWxzIjp7ImFjdGlvbktpbmRDYXBwZWQiOmZhbHNlLCJoZXVyaXN0aWMiOnsiYW1vdW50TWlub3JVbml0cyI6NDI5OSwiYW5vbnltb3VzIjp0cnVlLCJiZWhhdmlvcmFsIjpudWxsLCJicmVha2Rvd24iOnsiYWdlbnRTdGF0dXMiOjAsImFub255bW91cyI6NTAsImJlaGF2aW9yYWwiOjAsImlkZW50aXR5VW52ZXJpZmllZCI6MCwibGFyZ2VBbW91bnQiOjAsInBvbGljeVZpb2xhdGlvbnMiOjEyLCJyaXNrVGllciI6MCwic2lnbmF0dXJlSW52YWxpZCI6MH0sImhhcmRWaW9sYXRpb24iOmZhbHNlLCJpZGVudGl0eVZlcmlmaWVkIjpmYWxzZSwicG9saWN5UGFzc2VkIjpmYWxzZSwicmlza1RpZXIiOm51bGwsInZpb2xhdGlvbkNvZGVzIjpbImdlb19taXNzaW5nIl19LCJoZXVyaXN0aWNEZWNpc2lvbiI6ImRlbnkiLCJoZXVyaXN0aWNTY29yZSI6NjIsImtpbmQiOiJhcDJfcGF5bWVudCIsInJhdGlvbmFsZSI6bnVsbCwicmVhc29uZXJEZWNpc2lvbiI6bnVsbCwicmVhc29uZXJFbmFibGVkIjp0cnVlLCJyZWFzb25lclVzZWQiOmZhbHNlLCJyZWZpbmVtZW50UGVuZGluZyI6ZmFsc2V9LCJzdWJqZWN0IjoiYW5vbnltb3VzOmU2MGY2ZmIzMDZmYjY5OTcifQ.vEdLTOg5n_qKpabzPtjbVpmCIKaR211HUhyz6cTsOoBF4UHvayZSfrpTggp25knq6J1L2RsLHGKTZtZcx6UBCw",
+  "protected_header": {
+    "alg": "EdDSA",
+    "kid": "1zoM57brjllufNTzCwI5-j5jFkiAslyzVDbPAcR_f-M",
+    "typ": "application/vc+jws"
+  },
+  "claims": {
+    "assessed_at": "2026-07-17T20:33:41.072Z",
+    "decision": "deny",
+    "issuer": "did:web:fidacy.com#1zoM57brjllufNTzCwI5-j5jFkiAslyzVDbPAcR_f-M",
+    "model_version": "fidacy-risk-0.1.0",
+    "policy_version": "1",
+    "score": 62,
+    "signals": {
+      "actionKindCapped": false,
+      "heuristic": {
+        "amountMinorUnits": 4299,
+        "anonymous": true,
+        "behavioral": null,
+        "breakdown": {
+          "agentStatus": 0,
+          "anonymous": 50,
+          "behavioral": 0,
+          "identityUnverified": 0,
+          "largeAmount": 0,
+          "policyViolations": 12,
+          "riskTier": 0,
+          "signatureInvalid": 0
+        },
+        "hardViolation": false,
+        "identityVerified": false,
+        "policyPassed": false,
+        "riskTier": null,
+        "violationCodes": [
+          "geo_missing"
+        ]
+      },
+      "heuristicDecision": "deny",
+      "heuristicScore": 62,
+      "kind": "ap2_payment",
+      "rationale": null,
+      "reasonerDecision": null,
+      "reasonerEnabled": true,
+      "reasonerUsed": false,
+      "refinementPending": false
+    },
+    "subject": "anonymous:e60f6fb306fb6997"
+  },
+  "signingKeyId": "1zoM57brjllufNTzCwI5-j5jFkiAslyzVDbPAcR_f-M",
+  "decision": "deny"
+}
