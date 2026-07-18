@@ -30,8 +30,17 @@ node gen-vectors.mjs
 # expired        -> rejected 'expired'
 # bad-signature  -> rejected 'invalid_signature'
 # rotated-key    -> rejected 'unknown_kid'
-# wrong-session  -> signature verifies; the session mismatch is a consumer check
+# wrong-session  -> signature verifies BY DESIGN; the session mismatch is a consumer check
 ```
+
+**Why `wrong-session` verifies (not a hole).** That vector is an authentic,
+untampered verdict about a *different* checkout session. The verifier's job is
+authenticity: is this verdict real and unmodified? The consumer's job is scope:
+is it about the checkout in front of me? The consumer MUST compare the claim's
+`subject` to the session in hand and reject on mismatch; `gen-vectors.mjs`
+demonstrates that check and prints this note. Collapsing scope into the
+verifier would silently skip it whenever anyone verifies out of band. It is the
+same separation the envelope itself makes between identity and risk.
 
 And confirm the real production verdict against the live key set:
 

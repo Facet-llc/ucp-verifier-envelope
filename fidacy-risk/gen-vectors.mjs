@@ -114,12 +114,26 @@ const vRotated = await sign(baseClaims({ issuer: `did:web:fidacy.com#${rotatedKi
 vectors["rotated-key"] = { jws: vRotated, expect: "unknown_kid" };
 await expectReject(vRotated, "unknown_kid", "rotated-key -> rejected 'unknown_kid'");
 
-// 5) wrong-session: signature is VALID; the session binding is a consumer check
+// 5) wrong-session: signature is VALID BY DESIGN; the session binding is a
+// consumer check. The verifier answers "is this verdict real and untampered?";
+// the consumer answers "is it about the checkout in front of me?". Authenticity
+// and scope are different questions, and collapsing them into the verifier
+// would silently skip the scope check the moment anyone verifies out of band.
+const WRONG_SESSION_NOTE =
+  "NOT A HOLE, by design: the signature verifies because the verdict is authentic. " +
+  "The verifier proves authenticity, not scope. The consumer MUST compare the " +
+  "claim's subject to the checkout session in hand and reject on mismatch " +
+  "(gen-vectors.mjs demonstrates that check). Same separation as identity vs risk.";
 const vWrongSession = await sign(baseClaims({ subject: "session:cs_OTHER" }), active.privateKey, activeKid);
-vectors["wrong-session"] = { jws: vWrongSession, expect: "signature valid; consumer rejects on session mismatch" };
+vectors["wrong-session"] = {
+  jws: vWrongSession,
+  expect: "signature valid; consumer rejects on session mismatch",
+  note: WRONG_SESSION_NOTE,
+};
 await expectValid(vWrongSession, "wrong-session -> signature verifies (session checked by consumer)");
 const r = await verifyRiskPayload(vWrongSession, { jwks: testJwks });
 ok(r.claims.subject !== "session:cs_THIS_CHECKOUT", "wrong-session -> consumer sees subject != presented session", r.claims.subject);
+console.log(`NOTE  wrong-session verifying is intentional: ${WRONG_SESSION_NOTE}`);
 
 writeFileSync(join(OUT, "vectors.json"), JSON.stringify({
   claim_type: "risk",
