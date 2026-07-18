@@ -1,0 +1,21 @@
+{
+  "id": "checkout_cross_verify_demo",
+  "total": {
+    "amount": "42.99",
+    "currency": "EUR"
+  },
+  "signals": {
+    "llc.facet.kya": {
+      "format": "kya+jwt",
+      "jws": "eyJhbGciOiJFUzI1NiIsInR5cCI6Imt5YStqd3QiLCJraWQiOiJmYWNldC0xYjY0NGNiYiJ9.eyJpc3MiOiJodHRwczovL2lzc3Vlci5mYWNldC5sbGMiLCJhdWQiOiJodHRwczovL21lcmNoYW50LmV4YW1wbGUvdWNwIiwiYWlkIjoiZmFjZXQ6YWdlbnQ6MEZWdlJKdGJHMS1ra0ktcGFYSjFqcWZNTVJURG5BTTByUlotaGg1SEdXQSIsImlhdCI6MTc4NDQwODc3MSwibmJmIjoxNzg0NDA4NzcxLCJleHAiOjE3ODQ0MTIzNzEsImFwZCI6ImZhY2V0IiwidGllciI6InNlbGYifQ.oonJ-vCemHPvjV2y87m6N_xHxNolWsMtxwWtjA7yv2M-GFUGKNYrBTw8W3Tid2hP51lZLQ7BcDqW7lgwhVWcbw",
+      "kid": "facet-1b644cbb",
+      "provider_jwks": "https://issuer.facet.llc/.well-known/jwks.json"
+    },
+    "com.fidacy.trust_verdict": {
+      "format": "application/vc+jws",
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6IjF6b001N2JyamxsdWZOVHpDd0k1LWo1akZraUFzbHl6VkRiUEFjUl9mLU0iLCJ0eXAiOiJhcHBsaWNhdGlvbi92Yytqd3MifQ.eyJhc3Nlc3NlZF9hdCI6IjIwMjYtMDctMTdUMjA6MzM6NDEuMDcyWiIsImRlY2lzaW9uIjoiZGVueSIsImlzc3VlciI6ImRpZDp3ZWI6ZmlkYWN5LmNvbSMxem9NNTdicmpsbHVmTlR6Q3dJNS1qNWpGa2lBc2x5elZEYlBBY1JfZi1NIiwibW9kZWxfdmVyc2lvbiI6ImZpZGFjeS1yaXNrLTAuMS4wIiwicG9saWN5X3ZlcnNpb24iOiIxIiwic2NvcmUiOjYyLCJzaWduYWxzIjp7ImFjdGlvbktpbmRDYXBwZWQiOmZhbHNlLCJoZXVyaXN0aWMiOnsiYW1vdW50TWlub3JVbml0cyI6NDI5OSwiYW5vbnltb3VzIjp0cnVlLCJiZWhhdmlvcmFsIjpudWxsLCJicmVha2Rvd24iOnsiYWdlbnRTdGF0dXMiOjAsImFub255bW91cyI6NTAsImJlaGF2aW9yYWwiOjAsImlkZW50aXR5VW52ZXJpZmllZCI6MCwibGFyZ2VBbW91bnQiOjAsInBvbGljeVZpb2xhdGlvbnMiOjEyLCJyaXNrVGllciI6MCwic2lnbmF0dXJlSW52YWxpZCI6MH0sImhhcmRWaW9sYXRpb24iOmZhbHNlLCJpZGVudGl0eVZlcmlmaWVkIjpmYWxzZSwicG9saWN5UGFzc2VkIjpmYWxzZSwicmlza1RpZXIiOm51bGwsInZpb2xhdGlvbkNvZGVzIjpbImdlb19taXNzaW5nIl19LCJoZXVyaXN0aWNEZWNpc2lvbiI6ImRlbnkiLCJoZXVyaXN0aWNTY29yZSI6NjIsImtpbmQiOiJhcDJfcGF5bWVudCIsInJhdGlvbmFsZSI6bnVsbCwicmVhc29uZXJEZWNpc2lvbiI6bnVsbCwicmVhc29uZXJFbmFibGVkIjp0cnVlLCJyZWFzb25lclVzZWQiOmZhbHNlLCJyZWZpbmVtZW50UGVuZGluZyI6ZmFsc2V9LCJzdWJqZWN0IjoiYW5vbnltb3VzOmU2MGY2ZmIzMDZmYjY5OTcifQ.vEdLTOg5n_qKpabzPtjbVpmCIKaR211HUhyz6cTsOoBF4UHvayZSfrpTggp25knq6J1L2RsLHGKTZtZcx6UBCw",
+      "kid": "1zoM57brjllufNTzCwI5-j5jFkiAslyzVDbPAcR_f-M",
+      "provider_jwks": "https://api.fidacy.com/.well-known/jwks.json"
+    }
+  }
+}
