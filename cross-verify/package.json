@@ -1,0 +1,7 @@
+{
+  "name": "ucp-envelope-cross-verify",
+  "private": true,
+  "type": "module",
+  "description": "First end-to-end cross-verification of the UCP external-verifier envelope: one checkout, two issuers (Facet identity + Fidacy risk), two algs (ES256 + EdDSA), both verify offline",
+  "dependencies": { "jose": "^5.9.6", "@fidacy/verify": "^0.1.2" }
+}
