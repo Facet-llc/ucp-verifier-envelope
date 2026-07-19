@@ -1,0 +1,11 @@
+{
+  "name": "facet-identity-vectors",
+  "private": true,
+  "type": "module",
+  "description": "Reproducible conformance vectors for the Facet KYA identity half of the UCP external-verifier envelope",
+  "scripts": {
+    "gen": "node gen-vectors.mjs",
+    "mint": "node mint-live-kya.mjs"
+  },
+  "dependencies": { "jose": "^5.9.6" }
+}

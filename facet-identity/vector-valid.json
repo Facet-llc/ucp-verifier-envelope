@@ -1,0 +1,21 @@
+{
+  "_comment": "A REAL Facet KYA minted from the live issuer via the public self-serve path (no secret). Verifies offline against https://issuer.facet.llc/.well-known/jwks.json by the kid in the protected header. tier 'self' tokens carry a 1h TTL by design; re-run `node mint-live-kya.mjs` to mint a fresh, currently-valid one. Authenticity (signature + kid resolves in the live JWKS) holds for as long as that key is published.",
+  "token": "eyJhbGciOiJFUzI1NiIsInR5cCI6Imt5YStqd3QiLCJraWQiOiJmYWNldC0xYjY0NGNiYiJ9.eyJpc3MiOiJodHRwczovL2lzc3Vlci5mYWNldC5sbGMiLCJhdWQiOiJodHRwczovL21lcmNoYW50LmV4YW1wbGUvdWNwIiwiYWlkIjoiZmFjZXQ6YWdlbnQ6QWphbVFsYXVSQTNwV0pyQ21IckZBcU9hS0JGN3RhNFItbE1BVlV1TGFRQSIsImlhdCI6MTc4NDM5MDI5OCwibmJmIjoxNzg0MzkwMjk4LCJleHAiOjE3ODQzOTM4OTgsImFwZCI6ImZhY2V0IiwidGllciI6InNlbGYifQ._DZajODXXV_IdsLFpvydIJQbIBxG8ihf1UyaIhfT2bFbz6Q2m3WtF0n3ewAraU_ha0_zAlD33h6DBPENKawpNA",
+  "protected_header": {
+    "alg": "ES256",
+    "typ": "kya+jwt",
+    "kid": "facet-1b644cbb"
+  },
+  "claims": {
+    "iss": "https://issuer.facet.llc",
+    "aud": "https://merchant.example/ucp",
+    "aid": "facet:agent:AjamQlauRA3pWJrCmHrFAqOaKBF7ta4R-lMAVUuLaQA",
+    "iat": 1784390298,
+    "nbf": 1784390298,
+    "exp": 1784393898,
+    "apd": "facet",
+    "tier": "self"
+  },
+  "jwks_uri": "https://issuer.facet.llc/.well-known/jwks.json",
+  "minted_at": "2026-07-18T15:58:18.975Z"
+}

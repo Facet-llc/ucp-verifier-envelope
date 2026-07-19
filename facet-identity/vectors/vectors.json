@@ -1,0 +1,31 @@
+{
+  "claim_type": "identity",
+  "signal": "llc.facet.kya",
+  "envelope": "compact JWS, ES256 (EC P-256), kid in protected header, typ kya+jwt",
+  "test_jwks": "test-jwks.json",
+  "verify": "npm jose -> jwtVerify(jws, JWKS, { typ: 'kya+jwt', issuer }); consumer additionally pins aud",
+  "aid": "facet:agent:AUZBcnd29CDytEvoUqwjdZIW53NtainhR5gtgV4TNLU",
+  "vectors": {
+    "valid": {
+      "jws": "eyJhbGciOiJFUzI1NiIsInR5cCI6Imt5YStqd3QiLCJraWQiOiJNNWJwTkN0UVZadEU1ajlja1lhRlBsYnUtREdWcFpleTc4Zmo5VTRldi04In0.eyJpc3MiOiJodHRwczovL2lzc3Vlci5mYWNldC5sbGMiLCJhdWQiOiJodHRwczovL21lcmNoYW50LmV4YW1wbGUvdWNwIiwiYWlkIjoiZmFjZXQ6YWdlbnQ6QVVaQmNuZDI5Q0R5dEV2b1Vxd2pkWklXNTNOdGFpbmhSNWd0Z1Y0VE5MVSIsImFwZCI6ImZhY2V0IiwidGllciI6InNlbGYiLCJpYXQiOjE3NTI3OTY4MDAsIm5iZiI6MTc1Mjc5NjgwMCwiZXhwIjo0MTAyNDQ0ODAwfQ.NBVhlIN9uT6Fokg9dWxZLx3e9JHTLSZB_ndlKDV9ey9XFvMkRmApCXerBobWUUKdhRoykR-59jfq5B3_n0i39Q",
+      "expect": "valid"
+    },
+    "expired": {
+      "jws": "eyJhbGciOiJFUzI1NiIsInR5cCI6Imt5YStqd3QiLCJraWQiOiJNNWJwTkN0UVZadEU1ajlja1lhRlBsYnUtREdWcFpleTc4Zmo5VTRldi04In0.eyJpc3MiOiJodHRwczovL2lzc3Vlci5mYWNldC5sbGMiLCJhdWQiOiJodHRwczovL21lcmNoYW50LmV4YW1wbGUvdWNwIiwiYWlkIjoiZmFjZXQ6YWdlbnQ6QVVaQmNuZDI5Q0R5dEV2b1Vxd2pkWklXNTNOdGFpbmhSNWd0Z1Y0VE5MVSIsImFwZCI6ImZhY2V0IiwidGllciI6InNlbGYiLCJpYXQiOjk5OTk5NjQwMCwibmJmIjo5OTk5OTY0MDAsImV4cCI6MTAwMDAwMDAwMH0.TJC6bvAzuKCsDEFvRv5QecDlT8RqVlZSRy_23771UiSSfxOSKZMsyPl7IHEw60rmKF1xDiXRQnRpQxTZPnivIA",
+      "expect": "expired"
+    },
+    "bad-signature": {
+      "jws": "eyJhbGciOiJFUzI1NiIsInR5cCI6Imt5YStqd3QiLCJraWQiOiJNNWJwTkN0UVZadEU1ajlja1lhRlBsYnUtREdWcFpleTc4Zmo5VTRldi04In0.eyJpc3MiOiJodHRwczovL2lzc3Vlci5mYWNldC5sbGMiLCJhdWQiOiJodHRwczovL21lcmNoYW50LmV4YW1wbGUvdWNwIiwiYWlkIjoiZmFjZXQ6YWdlbnQ6QVVaQmNuZDI5Q0R5dEV2b1Vxd2pkWklXNTNOdGFpbmhSNWd0Z1Y0VE5MVSIsImFwZCI6ImZhY2V0IiwidGllciI6InNlbGYiLCJpYXQiOjE3NTI3OTY4MDAsIm5iZiI6MTc1Mjc5NjgwMCwiZXhwIjo0MTAyNDQ0ODAwfQ.NBVhlIN9uT6Fokg9dWxZLx3e9JHTLSZB_ndlKDV9ey9XFvMkRmApCXerBobWUUKdhRoykR-59jfq5B3_n0i39A",
+      "expect": "invalid_signature"
+    },
+    "rotated-key": {
+      "jws": "eyJhbGciOiJFUzI1NiIsInR5cCI6Imt5YStqd3QiLCJraWQiOiJfYno4QThMYjlLOExncEhwU2hGQ2N2Um1YbzE2UXBxR1FvSFpPc09yQnprIn0.eyJpc3MiOiJodHRwczovL2lzc3Vlci5mYWNldC5sbGMiLCJhdWQiOiJodHRwczovL21lcmNoYW50LmV4YW1wbGUvdWNwIiwiYWlkIjoiZmFjZXQ6YWdlbnQ6QVVaQmNuZDI5Q0R5dEV2b1Vxd2pkWklXNTNOdGFpbmhSNWd0Z1Y0VE5MVSIsImFwZCI6ImZhY2V0IiwidGllciI6InNlbGYiLCJpYXQiOjE3NTI3OTY4MDAsIm5iZiI6MTc1Mjc5NjgwMCwiZXhwIjo0MTAyNDQ0ODAwfQ.ABH4eX40PgeNP2TDVJh6gwWTABBmTJnPdoq_iDWAzziYDSUnUrCV6TN0AEiiXYOORSDkAq9PADT2afmZRfp_gQ",
+      "expect": "unknown_kid"
+    },
+    "wrong-audience": {
+      "jws": "eyJhbGciOiJFUzI1NiIsInR5cCI6Imt5YStqd3QiLCJraWQiOiJNNWJwTkN0UVZadEU1ajlja1lhRlBsYnUtREdWcFpleTc4Zmo5VTRldi04In0.eyJpc3MiOiJodHRwczovL2lzc3Vlci5mYWNldC5sbGMiLCJhdWQiOiJodHRwczovL290aGVyLW1lcmNoYW50LmV4YW1wbGUvdWNwIiwiYWlkIjoiZmFjZXQ6YWdlbnQ6QVVaQmNuZDI5Q0R5dEV2b1Vxd2pkWklXNTNOdGFpbmhSNWd0Z1Y0VE5MVSIsImFwZCI6ImZhY2V0IiwidGllciI6InNlbGYiLCJpYXQiOjE3NTI3OTY4MDAsIm5iZiI6MTc1Mjc5NjgwMCwiZXhwIjo0MTAyNDQ0ODAwfQ.BoGPGzescC1cfmRtFTvSgqVnjyDyh0ug-sZTefhHeKB1Y2A7P93Dua5h0lBD1dJPD4SDU8dljxok0VOR4SQv9w",
+      "expect": "signature valid; consumer rejects on audience mismatch",
+      "note": "NOT A HOLE, by design: the signature verifies because the KYA is authentic. The verifier proves authenticity (genuine issuer.facet.llc identity token); the consumer proves scope by comparing the aud claim to its own id and rejecting on mismatch (gen-vectors.mjs demonstrates that check). Identity is agent-scoped, not session-scoped, so the identity analog of the risk half's wrong-session is wrong-audience."
+    }
+  }
+}
