@@ -1,0 +1,8 @@
+{
+  "name": "fidacy-risk-vectors",
+  "private": true,
+  "type": "module",
+  "description": "Reproducible conformance vectors for the Fidacy risk-verdict half of the UCP external-verifier envelope",
+  "scripts": { "gen": "node gen-vectors.mjs" },
+  "dependencies": { "@fidacy/verify": "^0.1.2", "jose": "^5.9.6" }
+}
