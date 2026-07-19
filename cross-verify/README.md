@@ -33,11 +33,16 @@ entry carrying
   "format": "<typ of the JWS>",
   "jws": "<compact JWS, the source of truth>",
   "kid": "<protected-header kid, convenience copy>",
-  "provider_jwks": "<issuer JWKS URL>"
+  "provider_jwks": "<issuer JWKS URL — NON-NORMATIVE convenience hint>"
 }
 ```
 
-Everything outside `jws` is an untrusted convenience hint until the signature
+`provider_jwks` is non-normative: the envelope names the issuer, and key
+resolution is out of band, from the pinned source in each claim type's public
+spec (ours pins the canonical JWKS URL and the issuer is a did:web; Facet's
+pins issuer.facet.llc), seeded into the verifier's trust list. A hint pointing
+anywhere else simply fails verification against the pinned source and MUST NOT
+override it. Everything outside `jws` is an untrusted convenience hint until the signature
 verifies. Adding a third issuer is adding one more entry; nothing else changes.
 
 Honest note on the committed `envelope.json`: the KYA inside it was minted live
