@@ -158,9 +158,19 @@ const vExpired = await sign(baseClaims({ iat: PAST_IAT, nbf: PAST_IAT, exp: PAST
 vectors.expired = { jws: vExpired, expect: "expired" };
 await expectReject(vExpired, "ERR_JWT_EXPIRED", "expired -> rejected ERR_JWT_EXPIRED");
 
-// 3) bad-signature: flip the last char of the signature segment
+// 3) bad-signature: flip a bit in the DECODED signature bytes, not in the text.
+//
+// Same correction as the risk side, and the same reason: an ES256 signature is
+// r||s, 64 bytes, which is 86 base64url characters, so the final character
+// carries 2 significant bits and 4 of padding. Only "A", "Q", "g" and "w" can
+// legally appear there, and rewriting an "A" to a "B" touches padding alone:
+// both decode to the same 64 bytes, the signature stays genuine, and jose is
+// right to accept it. Measured on this generator before the fix: 2 failures in
+// 12 runs, entirely dependent on where the signature happened to land.
 const parts = vValid.split(".");
-parts[2] = parts[2].slice(0, -1) + (parts[2].slice(-1) === "A" ? "B" : "A");
+const sigBytes = Buffer.from(parts[2], "base64url");
+sigBytes[0] ^= 0x01;
+parts[2] = sigBytes.toString("base64url");
 const vBadSig = parts.join(".");
 vectors["bad-signature"] = { jws: vBadSig, expect: "invalid_signature" };
 await expectReject(vBadSig, "ERR_JWS_SIGNATURE_VERIFICATION_FAILED", "bad-signature -> rejected ERR_JWS_SIGNATURE_VERIFICATION_FAILED");

@@ -102,9 +102,22 @@ const vExpired = await sign(baseClaims({ exp: 1000000000 }), active.privateKey, 
 vectors.expired = { jws: vExpired, expect: "expired" };
 await expectReject(vExpired, "expired", "expired -> rejected 'expired'");
 
-// 3) bad-signature: flip the last char of the signature segment
+// 3) bad-signature: flip a bit in the DECODED signature bytes, not in the text.
+//
+// Editing the last base64url character does not reliably corrupt anything. An
+// Ed25519 signature is 64 bytes, which is 86 base64url characters, so the final
+// character carries only 2 significant bits and its other 4 are padding. Only
+// "A", "Q", "g" and "w" can legally appear there. Rewriting an "A" to a "B"
+// touches padding alone: both decode to the same 64 bytes, the signature stays
+// genuine, and the verifier is right to accept it. That made this vector pass on
+// three runs in four and fail on the fourth, purely on where the signature landed.
+//
+// Flipping a bit inside the decoded bytes always changes the signature, so the
+// vector now asserts what it claims to assert on every run.
 const parts = vValid.split(".");
-parts[2] = parts[2].slice(0, -1) + (parts[2].slice(-1) === "A" ? "B" : "A");
+const sigBytes = Buffer.from(parts[2], "base64url");
+sigBytes[0] ^= 0x01;
+parts[2] = sigBytes.toString("base64url");
 const vBadSig = parts.join(".");
 vectors["bad-signature"] = { jws: vBadSig, expect: "invalid_signature" };
 await expectReject(vBadSig, "invalid_signature", "bad-signature -> rejected 'invalid_signature'");
