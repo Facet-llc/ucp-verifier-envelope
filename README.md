@@ -26,7 +26,7 @@ Demonstrate the whole proposal end to end: a real checkout where an agent presen
   profile (`llc.facet.kya`), keyed to the vectors in `facet-identity/`.
 - [`spec/claim-types/risk.md`](spec/claim-types/risk.md), the risk profile
   (`com.fidacy.trust_verdict`), keyed to the vectors in `fidacy-risk/`.
-- [`spec/decision-provenance.md`](spec/decision-provenance.md), what
+- [`spec/policy-and-model-versioning.md`](spec/policy-and-model-versioning.md), what
   `policy_version` and `model_version` are for, and why a claim type that carries
   a judgement rather than a fact has to sign them.
 

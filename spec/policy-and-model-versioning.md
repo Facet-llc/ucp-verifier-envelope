@@ -1,4 +1,11 @@
-# Decision provenance
+# Policy and model versioning
+
+> Not to be confused with the `com.fidacy.decision_provenance` claim type, which
+> is a different thing with a confusingly similar name: a separately signed,
+> externally anchored receipt proving that a decision existed with exactly this
+> content at a given moment. That is a claim type of its own and may arrive here
+> later. This document is about two *fields inside another claim's payload*, and
+> it mandates no signature, no receipt and no anchor.
 
 A signature proves a claim is authentic and unmodified. It does not, on its own,
 say **what produced the claim**. For an identity attestation that gap is small:

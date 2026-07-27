@@ -48,8 +48,8 @@ Serialised JCS-sorted, which is the order below.
 | `decision` | yes | `approve`, `review` or `deny`. The only field a consumer is required to act on. |
 | `exp` | no | Expiry. Absent means the verdict does not self-expire and the consumer's own freshness window governs (see envelope section 6). |
 | `issuer` | yes | `did:web:fidacy.com#<kid>` (or another issuer the merchant pins). |
-| `model_version` | yes | The scoring model that produced `score`. See [decision provenance](../decision-provenance.md). |
-| `policy_version` | yes | The policy revision in force when the verdict was decided. See [decision provenance](../decision-provenance.md). |
+| `model_version` | yes | The scoring model that produced `score`. See [policy and model versioning](../policy-and-model-versioning.md). |
+| `policy_version` | yes | The policy revision in force when the verdict was decided. See [policy and model versioning](../policy-and-model-versioning.md). |
 | `score` | yes | Integer 0..100. Advisory: it explains the decision, it does not replace it. |
 | `signals` | yes | Object naming what drove the decision, e.g. `{ "rule": "payee_not_in_allowlist" }`. Never PII. |
 | `subject` | yes | The agent the verdict is about, e.g. `agent:demo-northwind`. |
