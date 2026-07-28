@@ -24,10 +24,11 @@ Demonstrate the whole proposal end to end: a real checkout where an agent presen
   conformance.
 - [`spec/claim-types/identity.md`](spec/claim-types/identity.md), the identity
   profile (`llc.facet.kya`), keyed to the vectors in `facet-identity/`.
-
-The risk profile (`com.fidacy.trust_verdict`) is documented in
-[`fidacy-risk/`](fidacy-risk/); a standalone `spec/claim-types/risk.md` can be
-referenced from there when Fidacy opens it.
+- [`spec/claim-types/risk.md`](spec/claim-types/risk.md), the risk profile
+  (`com.fidacy.trust_verdict`), keyed to the vectors in `fidacy-risk/`.
+- [`spec/policy-and-model-versioning.md`](spec/policy-and-model-versioning.md), what
+  `policy_version` and `model_version` are for, and why a claim type that carries
+  a judgement rather than a fact has to sign them.
 
 ## Status
 
