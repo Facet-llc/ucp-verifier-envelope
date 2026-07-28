@@ -16,9 +16,27 @@ Demonstrate the whole proposal end to end: a real checkout where an agent presen
 - Facet (`issuer.facet.llc`), agent identity, ES256 / compact JWS
 - Fidacy (`com.fidacy.trust_verdict`), transaction risk, EdDSA / JCS-canonical
 
+## Spec
+
+- [`spec/envelope.md`](spec/envelope.md), the envelope: the `signals` map, the
+  four entry fields (`jws`, `format`, `kid`, `provider_jwks`), the trust model,
+  key resolution and the merchant allow-list, the verification steps, replay, and
+  conformance.
+- [`spec/claim-types/identity.md`](spec/claim-types/identity.md), the identity
+  profile (`llc.facet.kya`), keyed to the vectors in `facet-identity/`.
+
+The risk profile (`com.fidacy.trust_verdict`) is documented in
+[`fidacy-risk/`](fidacy-risk/); a standalone `spec/claim-types/risk.md` can be
+referenced from there when Fidacy opens it.
+
 ## Status
 
-Just started. Conformance vectors (valid, expired, wrong-session, bad signature, rotated key) from both sides land here as the envelope's field names settle in #534.
+Field names settled in [#534](https://github.com/Universal-Commerce-Protocol/ucp/discussions/534)
+and written up in `spec/`. Two independent claim types (identity, ES256; risk,
+EdDSA) verify under the envelope end to end, reproducible via
+[`cross-verify/`](cross-verify/). Conformance vectors (valid, expired,
+wrong-session / wrong-audience, bad signature, rotated key) from both sides are
+in-tree.
 
 ## Contributing
 
