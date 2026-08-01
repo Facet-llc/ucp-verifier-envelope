@@ -172,6 +172,23 @@ The current profiles verify from more than one independent codebase; the
 [`../cross-verify/`](../cross-verify/) run exercises both in a single reproducible
 script (`npm i && node cross-verify.mjs`).
 
+**Issuer constraints are part of conformance.** A claim type whose claim judges a
+transaction (risk) or attests its decision record after the fact
+(decision-provenance) MUST be issued by a non-party: an issuer that does not
+operate, meter, settle, or take a fee on that transaction. Identity is
+deliberately exempt, since who an agent is does not depend on any one transaction,
+so a platform may attest identity on a rail it operates. Each such profile
+restates the clause for its own issuers; [claim-types/risk.md](claim-types/risk.md)
+carries it today.
+
+Recomputable bytes are what make a claim checkable. They are not what make it
+worth checking. A verdict is only evidence to a counterparty when the party
+issuing it does not profit from the answer, and no amount of signature rigour
+substitutes for that. Stating the constraint here rather than leaving it to each
+profile keeps a future claim type from arriving conformant on the cryptography and
+hollow on the economics. This is the
+[#535](https://github.com/Universal-Commerce-Protocol/ucp/discussions/535) clause.
+
 ## 9. Claim-type registry
 
 | signal | claim type | scope | alg | `typ` | profile |
