@@ -116,15 +116,15 @@ generated and verified by the Python scripts in that directory.
 | `valid` | authentic | accept | baseline: good sig, right session, not expired |
 | `expired` | authentic | reject (scope) | exp in the past; consumer check, not a verifier failure |
 | `wrong-session` | authentic | reject (scope) | session mismatch; consumer check, not a verifier failure |
-| `rotated-key` | reject | — | kid absent from JWKS |
-| `bad-signature` | reject | — | one bit flipped in the decoded ML-DSA signature bytes |
-| `hybrid-classical-valid-pqc-invalid` | reject | — | Ed25519 co-sig passes, ML-DSA corrupted; catches fallback to classical half |
-| `hybrid-substituted-classical-pqc-invalid` | reject | — | attacker's Ed25519 substituted; cnf.jkt mismatch detected |
+| `rotated-key` | reject | � | kid absent from JWKS |
+| `bad-signature` | reject | � | one bit flipped in the decoded ML-DSA signature bytes |
+| `hybrid-classical-valid-pqc-invalid` | reject | � | Ed25519 co-sig passes, ML-DSA corrupted; catches fallback to classical half |
+| `hybrid-substituted-classical-pqc-invalid` | reject | � | attacker's Ed25519 substituted; cnf.jkt mismatch detected |
 
 Reproduce:
 
 ```
-cd decision-provenance
+cd algovoi-provenance
 pip install pqcrypto cryptography rfc8785
 python gen_vectors.py   # regenerates vectors/test-jwks.json and vectors/vectors.json
 python verify.py        # 7/7 PASS required; exits non-zero on any mismatch
@@ -160,10 +160,11 @@ the first production issuer is deployed.
   payload: `ASCII(BASE64URL(header_json) + "." + BASE64URL(JCS(payload_json)))`.
   This is the same construction used for the Ed25519 profiles, so the two stacks
   interoperate on signing input before any JOSE library ships AKP.
-- `kid` is an RFC 7638-style SHA-256 thumbprint over `{alg, kty, pub}` — a
+- `kid` is an RFC 7638-style SHA-256 thumbprint over `{alg, kty, pub}` � a
   convention, not mandated by RFC 9964.
 - RFC 9964 AKP private keys carry a 32-byte ML-DSA seed in the `priv` member.
   `pqcrypto.generate_keypair()` returns a 4032-byte expanded secret key, so no
   spec-faithful `priv` is emitted; only public JWKs appear in the test JWKS.
 - `did:web:algovoi.com` will resolve to the same key material as the JWKS endpoint
   once the production JWKS is live.
+
