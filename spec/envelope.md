@@ -197,7 +197,17 @@ hollow on the economics. This is the
 | `llc.facet.kya` | identity | agent | ES256 (P-256) | `kya+jwt` | [claim-types/identity.md](claim-types/identity.md) |
 | `com.fidacy.trust_verdict` | risk | session | EdDSA (Ed25519) | `application/vc+jws` | [claim-types/risk.md](claim-types/risk.md) |
 | `com.fidacy.decision_provenance` | decision-provenance | record | EdDSA (Ed25519) | `fidacy-artifact-receipt+jws` | [claim-types/decision-provenance.md](claim-types/decision-provenance.md) |
+| `com.algovoi.decision_provenance` | decision-provenance | session | ML-DSA-65 (RFC 9964) | `application/vc+jws` | [claim-types/decision-provenance-algovoi.md](claim-types/decision-provenance-algovoi.md) |
 
-Three claim types verify under the envelope today, across two independent issuers
-and two signature algorithms, which is past the bar for graduating the envelope
-from vendor-namespaced to a core, neutrally-owned spec.
+Four signals verify under the envelope today, across three independent issuers and
+three signature algorithms, which is past the bar for graduating the envelope from
+vendor-namespaced to a core, neutrally-owned spec.
+
+Two of those four share the `decision-provenance` claim type without being the same
+thing, and the registry is keyed on the signal rather than the claim type precisely
+so it can say so. Fidacy's is record-scoped: an after-the-fact receipt that a
+decision existed with exactly this content, opened years later by a stranger to the
+transaction. AlgoVoi's is session-scoped: a statement of which decision was made, on
+what inputs, under what policy and model version, bound to one checkout. A consumer
+that treats them as interchangeable because the claim type matches will get the
+lifetime and the binding wrong. Match on the signal.
