@@ -35,6 +35,14 @@ node gen-vectors.mjs
 # content-mismatch -> signature verifies by design; consumer rejects on sha256 mismatch
 ```
 
+Verify the COMMITTED vectors (no regeneration, what the CI gate runs):
+
+```
+npm i && node verify.mjs
+```
+
+Exit 0 iff all 8 assertions hold, both layers, offline.
+
 `content-mismatch` verifying is not a hole. The verifier answers "is this receipt
 real and untampered". The consumer answers "does it attest the document in my
 hand" by hashing those bytes and comparing to the `sha256` claim. The generator

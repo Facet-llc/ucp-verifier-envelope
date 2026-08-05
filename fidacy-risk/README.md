@@ -33,6 +33,14 @@ node gen-vectors.mjs
 # wrong-session  -> signature verifies BY DESIGN; the session mismatch is a consumer check
 ```
 
+Verify the COMMITTED vectors (no regeneration, what the CI gate runs):
+
+```
+npm i && node verify.mjs
+```
+
+Exit 0 iff all 7 assertions hold, both layers, offline.
+
 **Why `wrong-session` verifies (not a hole).** That vector is an authentic,
 untampered verdict about a *different* checkout session. The verifier's job is
 authenticity: is this verdict real and unmodified? The consumer's job is scope:
