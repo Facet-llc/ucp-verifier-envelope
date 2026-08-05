@@ -1,0 +1,7 @@
+{
+  "decision": "deny",
+  "mandate": "mandate:demo-northwind-q3",
+  "payee": "supplier:evil",
+  "rule": "payee_not_in_allowlist",
+  "ts": "2026-07-19T00:27:11.402Z"
+}

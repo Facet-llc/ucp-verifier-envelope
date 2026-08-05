@@ -157,7 +157,8 @@ reference the content out of band; only the hash travels and stays verifiable
 after the envelope expires. Decision-provenance
 ([#56](https://github.com/Universal-Commerce-Protocol/ucp/discussions/56)) is the
 claim type that most needs this, and it slots in as another `signals` entry with
-no change to the envelope.
+no change to the envelope; the profile is at
+[claim-types/decision-provenance.md](claim-types/decision-provenance.md).
 
 ## 8. Conformance
 
@@ -195,6 +196,8 @@ hollow on the economics. This is the
 |---|---|---|---|---|---|
 | `llc.facet.kya` | identity | agent | ES256 (P-256) | `kya+jwt` | [claim-types/identity.md](claim-types/identity.md) |
 | `com.fidacy.trust_verdict` | risk | session | EdDSA (Ed25519) | `application/vc+jws` | [claim-types/risk.md](claim-types/risk.md) |
+| `com.fidacy.decision_provenance` | decision-provenance | record | EdDSA (Ed25519) | `fidacy-artifact-receipt+jws` | [claim-types/decision-provenance.md](claim-types/decision-provenance.md) |
 
-Two independent claim types verify under the envelope today, which is the bar for
-graduating the envelope from vendor-namespaced to a core, neutrally-owned spec.
+Three claim types verify under the envelope today, across two independent issuers
+and two signature algorithms, which is past the bar for graduating the envelope
+from vendor-namespaced to a core, neutrally-owned spec.

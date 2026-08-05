@@ -1,0 +1,39 @@
+{
+  "claim_type": "decision-provenance",
+  "signal": "com.fidacy.decision_provenance",
+  "envelope": "compact JWS, EdDSA (Ed25519) over RFC 8785 (JCS) bytes, kid in protected header, typ fidacy-artifact-receipt+jws",
+  "test_jwks": "test-jwks.json",
+  "record": "decision-record.json",
+  "record_sha256": "bf23f7c0a64741ab041a08928c5a22cae60a6a99501a0e95d31a77d0a103fdf5",
+  "verify": "plain jose -> compactVerify(jws, createLocalJWKSet(testJwks)), then pin typ",
+  "vectors": {
+    "valid": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6IjdQZ3h3SlFEUmhpMllnMDgxUDc1VzRTcHNtZ1ZmVTRBc19pU1Z2V1Z4bGMiLCJ0eXAiOiJmaWRhY3ktYXJ0aWZhY3QtcmVjZWlwdCtqd3MifQ.eyJhcnRpZmFjdElkIjoiMDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMGYxIiwiYXVkaXQiOnsiaGFzaCI6IjlhNWZhOWY0MmMwMWQ2YmUzZTJhNmE3YjU3Mzk5ZDUyYmJlYTdjNzFmY2U3MWJlZTk2NzRhODMwZDg4NmJjNGUiLCJzZXEiOjE1OH0sImRpZ2VzdCI6IjUzYTUwMjdkNzdiMDZhNDQ4YTA5ZGEzMzlkOTA5MzQ3MDYwN2JjNTIzYzNhNWM0ZWY4NTY4OTE4ZjE4MDYwMTQiLCJraW5kIjoiY3VzdG9tIiwib3JnIjoiNjFlOGEzZWQtNDIyNi00ZWYzLWJiYzUtNDJmYzkzOTE2NGQ1Iiwic2hhMjU2IjoiYmYyM2Y3YzBhNjQ3NDFhYjA0MWEwODkyOGM1YTIyY2FlNjBhNmE5OTUwMWEwZTk1ZDMxYTc3ZDBhMTAzZmRmNSIsInN1YmplY3QiOiJhZ2VudDpkZW1vLW5vcnRod2luZCIsInRzIjoiMjAyNi0wNy0xOVQwMDoyNzoxOS4xMjBaIiwidiI6ImZpZGFjeS5hcnRpZmFjdC52MSJ9.CKjjPRnOFpLt-pQZw6FFkYgpJhLSFM6qvnTrXzTTLTXLNSsZBH3Ra187TrpA-fSKSSK1ugiwS4n581Gan_6PAw",
+      "expect": "valid"
+    },
+    "bad-signature": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6IjdQZ3h3SlFEUmhpMllnMDgxUDc1VzRTcHNtZ1ZmVTRBc19pU1Z2V1Z4bGMiLCJ0eXAiOiJmaWRhY3ktYXJ0aWZhY3QtcmVjZWlwdCtqd3MifQ.eyJhcnRpZmFjdElkIjoiMDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMGYxIiwiYXVkaXQiOnsiaGFzaCI6IjlhNWZhOWY0MmMwMWQ2YmUzZTJhNmE3YjU3Mzk5ZDUyYmJlYTdjNzFmY2U3MWJlZTk2NzRhODMwZDg4NmJjNGUiLCJzZXEiOjE1OH0sImRpZ2VzdCI6IjUzYTUwMjdkNzdiMDZhNDQ4YTA5ZGEzMzlkOTA5MzQ3MDYwN2JjNTIzYzNhNWM0ZWY4NTY4OTE4ZjE4MDYwMTQiLCJraW5kIjoiY3VzdG9tIiwib3JnIjoiNjFlOGEzZWQtNDIyNi00ZWYzLWJiYzUtNDJmYzkzOTE2NGQ1Iiwic2hhMjU2IjoiYmYyM2Y3YzBhNjQ3NDFhYjA0MWEwODkyOGM1YTIyY2FlNjBhNmE5OTUwMWEwZTk1ZDMxYTc3ZDBhMTAzZmRmNSIsInN1YmplY3QiOiJhZ2VudDpkZW1vLW5vcnRod2luZCIsInRzIjoiMjAyNi0wNy0xOVQwMDoyNzoxOS4xMjBaIiwidiI6ImZpZGFjeS5hcnRpZmFjdC52MSJ9.CajjPRnOFpLt-pQZw6FFkYgpJhLSFM6qvnTrXzTTLTXLNSsZBH3Ra187TrpA-fSKSSK1ugiwS4n581Gan_6PAw",
+      "expect": "ERR_JWS_SIGNATURE_VERIFICATION_FAILED"
+    },
+    "rotated-key": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6InotSDc1N1kwMWZMb3NMTVBMR3lrUEFzY0lqb1FYQnBzeXFSelBqMGxzV0EiLCJ0eXAiOiJmaWRhY3ktYXJ0aWZhY3QtcmVjZWlwdCtqd3MifQ.eyJhcnRpZmFjdElkIjoiMDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMGYxIiwiYXVkaXQiOnsiaGFzaCI6IjlhNWZhOWY0MmMwMWQ2YmUzZTJhNmE3YjU3Mzk5ZDUyYmJlYTdjNzFmY2U3MWJlZTk2NzRhODMwZDg4NmJjNGUiLCJzZXEiOjE1OH0sImRpZ2VzdCI6IjUzYTUwMjdkNzdiMDZhNDQ4YTA5ZGEzMzlkOTA5MzQ3MDYwN2JjNTIzYzNhNWM0ZWY4NTY4OTE4ZjE4MDYwMTQiLCJraW5kIjoiY3VzdG9tIiwib3JnIjoiNjFlOGEzZWQtNDIyNi00ZWYzLWJiYzUtNDJmYzkzOTE2NGQ1Iiwic2hhMjU2IjoiYmYyM2Y3YzBhNjQ3NDFhYjA0MWEwODkyOGM1YTIyY2FlNjBhNmE5OTUwMWEwZTk1ZDMxYTc3ZDBhMTAzZmRmNSIsInN1YmplY3QiOiJhZ2VudDpkZW1vLW5vcnRod2luZCIsInRzIjoiMjAyNi0wNy0xOVQwMDoyNzoxOS4xMjBaIiwidiI6ImZpZGFjeS5hcnRpZmFjdC52MSJ9.2-nE95Ml8hj1X4YIa8uRpxTRMDuGKbEY00KlbcS54Pz8nEkpHsk8xRC26hRfJJjAwgyrdFAxxwsZCvAbWJ5zBw",
+      "expect": "ERR_JWKS_NO_MATCHING_KEY"
+    },
+    "wrong-typ": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6IjdQZ3h3SlFEUmhpMllnMDgxUDc1VzRTcHNtZ1ZmVTRBc19pU1Z2V1Z4bGMiLCJ0eXAiOiJhcHBsaWNhdGlvbi92Yytqd3MifQ.eyJhcnRpZmFjdElkIjoiMDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMGYxIiwiYXVkaXQiOnsiaGFzaCI6IjlhNWZhOWY0MmMwMWQ2YmUzZTJhNmE3YjU3Mzk5ZDUyYmJlYTdjNzFmY2U3MWJlZTk2NzRhODMwZDg4NmJjNGUiLCJzZXEiOjE1OH0sImRpZ2VzdCI6IjUzYTUwMjdkNzdiMDZhNDQ4YTA5ZGEzMzlkOTA5MzQ3MDYwN2JjNTIzYzNhNWM0ZWY4NTY4OTE4ZjE4MDYwMTQiLCJraW5kIjoiY3VzdG9tIiwib3JnIjoiNjFlOGEzZWQtNDIyNi00ZWYzLWJiYzUtNDJmYzkzOTE2NGQ1Iiwic2hhMjU2IjoiYmYyM2Y3YzBhNjQ3NDFhYjA0MWEwODkyOGM1YTIyY2FlNjBhNmE5OTUwMWEwZTk1ZDMxYTc3ZDBhMTAzZmRmNSIsInN1YmplY3QiOiJhZ2VudDpkZW1vLW5vcnRod2luZCIsInRzIjoiMjAyNi0wNy0xOVQwMDoyNzoxOS4xMjBaIiwidiI6ImZpZGFjeS5hcnRpZmFjdC52MSJ9.uJfmou9F4UxnojVxSOjV7pqEIxIR7UKp3y93ZDLZHZk-vcskxXUVEZlNx3-5noo7LofjsCPo5RkhVaRNKr90Cg",
+      "expect": "typ"
+    },
+    "content-mismatch": {
+      "jws": "eyJhbGciOiJFZERTQSIsImtpZCI6IjdQZ3h3SlFEUmhpMllnMDgxUDc1VzRTcHNtZ1ZmVTRBc19pU1Z2V1Z4bGMiLCJ0eXAiOiJmaWRhY3ktYXJ0aWZhY3QtcmVjZWlwdCtqd3MifQ.eyJhcnRpZmFjdElkIjoiMDAwMDAwMDAtMDAwMC00MDAwLTgwMDAtMDAwMDAwMDAwMGYxIiwiYXVkaXQiOnsiaGFzaCI6IjlhNWZhOWY0MmMwMWQ2YmUzZTJhNmE3YjU3Mzk5ZDUyYmJlYTdjNzFmY2U3MWJlZTk2NzRhODMwZDg4NmJjNGUiLCJzZXEiOjE1OH0sImRpZ2VzdCI6IjUzYTUwMjdkNzdiMDZhNDQ4YTA5ZGEzMzlkOTA5MzQ3MDYwN2JjNTIzYzNhNWM0ZWY4NTY4OTE4ZjE4MDYwMTQiLCJraW5kIjoiY3VzdG9tIiwib3JnIjoiNjFlOGEzZWQtNDIyNi00ZWYzLWJiYzUtNDJmYzkzOTE2NGQ1Iiwic2hhMjU2IjoiYmYyM2Y3YzBhNjQ3NDFhYjA0MWEwODkyOGM1YTIyY2FlNjBhNmE5OTUwMWEwZTk1ZDMxYTc3ZDBhMTAzZmRmNSIsInN1YmplY3QiOiJhZ2VudDpkZW1vLW5vcnRod2luZCIsInRzIjoiMjAyNi0wNy0xOVQwMDoyNzoxOS4xMjBaIiwidiI6ImZpZGFjeS5hcnRpZmFjdC52MSJ9.CKjjPRnOFpLt-pQZw6FFkYgpJhLSFM6qvnTrXzTTLTXLNSsZBH3Ra187TrpA-fSKSSK1ugiwS4n581Gan_6PAw",
+      "presented_record": {
+        "decision": "deny",
+        "mandate": "mandate:demo-northwind-q3",
+        "payee": "supplier:acme",
+        "rule": "payee_not_in_allowlist",
+        "ts": "2026-07-19T00:27:11.402Z"
+      },
+      "expect": "signature valid; consumer rejects on sha256 mismatch",
+      "note": "NOT A HOLE, by design: the signature verifies because the receipt is authentic. The verifier proves authenticity, not correspondence. The consumer MUST hash the record bytes in hand and compare against the receipt's sha256 claim, rejecting on mismatch (gen-vectors.mjs demonstrates that check)."
+    }
+  }
+}
