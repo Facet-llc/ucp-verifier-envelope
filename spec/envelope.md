@@ -173,6 +173,17 @@ The current profiles verify from more than one independent codebase; the
 [`../cross-verify/`](../cross-verify/) run exercises both in a single reproducible
 script (`npm i && node cross-verify.mjs`).
 
+**A generator is not entry evidence; a gate is.** A profile's `gen-vectors`
+script self-validates the bytes it just produced, which proves the generator is
+internally consistent with itself. It does not prove the vectors committed to the
+tree, and those are the only bytes a cold reader ever verifies against. Entry
+evidence is a separate `verify` script that loads the committed vectors and
+re-checks them with no regeneration, asserting the same two sides (a pass and
+every reject reason) over the artifact rather than over a fresh run. A profile MAY
+ship a generator; it MUST ship a runnable verifier over its committed vectors, and
+the conformance gate runs the latter. The two claims are different, and only the
+second is what admits a signal to the registry.
+
 **Issuer constraints are part of conformance.** A claim type whose claim judges a
 transaction (risk) or attests its decision record after the fact
 (decision-provenance) MUST be issued by a non-party: an issuer that does not
